@@ -63,7 +63,7 @@ def main():
 		for i in range(len(snow_list)):
 	
 			# Draw the snowflake
-			# This line sneakily employs vector addition to sum the wind variable
+			# This line sneakily employs matrix addition to sum the wind variable
 			# to the x value of every snowflake. There is probably a
 			# clearer way of coding this!
 			# It is messy because I went beyond the book and threw in the
