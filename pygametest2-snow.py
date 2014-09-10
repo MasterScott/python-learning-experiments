@@ -1,4 +1,4 @@
-#! /usr/local/bin/python
+#! /usr/bin/env python
 
 # Snow drawing test by Chris Muggli-Miller
 # Close the window to quit.
