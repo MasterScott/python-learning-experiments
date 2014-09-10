@@ -21,25 +21,26 @@ BLACK = [0, 0, 0]
 WHITE = [255, 255, 255]
 PI = math.pi
 
-# Initialization
-pygame.init()
-
-screen = pygame.display.set_mode(SCREENSIZE) # Open a new window
-pygame.display.set_caption("Snow Falling")	# Title the window
-
-# Used for updating the screen 60 times per second, in the main loop below
-clock = pygame.time.Clock()
-
-# Create a list of 50 points (the snowflakes)
-snow_list = []
-for i in range(50):
-	x = random.randrange(0, SCREENSIZE[0])
-	y = random.randrange(0, SCREENSIZE[1])
-	snow_list.append([x, y])
-
-#---Main Loop---
-
 def main():
+
+	# Initialization
+	pygame.init()
+
+	screen = pygame.display.set_mode(SCREENSIZE) # Open a new window
+	pygame.display.set_caption("Snow Falling")	# Title the window
+
+	# Used for updating the screen 60 times per second, in the main loop below
+	clock = pygame.time.Clock()
+
+	# Create a list of 50 points (the snowflakes)
+	snow_list = []
+	for i in range(50):
+		x = random.randrange(0, SCREENSIZE[0])
+		y = random.randrange(0, SCREENSIZE[1])
+		snow_list.append([x, y])
+
+	#---Main Loop---
+
 	done = False							# when true, exit the loop
 	cycle = 0.0								# in radians; controls the sin wave
 
