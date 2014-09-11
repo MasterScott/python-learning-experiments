@@ -34,8 +34,12 @@ def main():
 
 	# Create a list of 50 points (the snowflakes)
 	snow_list = []
+	
+	# Arbitrary value. Determines how fast the snow blows horizontally.
+	wind_strength = 100
+	
 	for i in range(50):
-		x = random.randrange(0, SCREENSIZE[0])
+		x = random.randrange(-wind_strength, SCREENSIZE[0] + wind_strength)
 		y = random.randrange(0, SCREENSIZE[1])
 		snow_list.append([x, y])
 
@@ -57,18 +61,18 @@ def main():
 		if cycle > 2 * PI:		# Reset it after one complete revolution (one sin cycle)
 			cycle = 0
 		
-		wind = int(100 * math.sin(cycle))	# wind blows back and forth
+		wind = int(wind_strength * math.sin(cycle))	# wind blows back and forth
 	
 		# Process each snowflake in the list
 		for i in range(len(snow_list)):
-	
+		
+			# Apply the wind offset to the x value just before drawing,
+			# but leave the y value as-is for now
+			final_x = snow_list[i][0] + wind
+			final_y = snow_list[i][1]
+			
 			# Draw the snowflake
-			# This line sneakily employs matrix addition to sum the wind variable
-			# to the x value of every snowflake. There is probably a
-			# clearer way of coding this!
-			# It is messy because I went beyond the book and threw in the
-			# sin function on my own.
-			pygame.draw.circle(screen, WHITE, [snow_list[i][0] + wind, snow_list[i][1]], 2)
+			pygame.draw.circle(screen, WHITE, [final_x, final_y], 2)
 		
 			# Now move the flake
 			snow_list[i][1] += 2	# move it 2 pixels down
@@ -77,7 +81,7 @@ def main():
 			if snow_list[i][1] > SCREENSIZE[1]:
 				# Randomize a new starting point just above the top
 				y = random.randrange(-50, -10)
-				x = random.randrange(0, SCREENSIZE[0])		# Don't go beyond the screen
+				x = random.randrange(-wind_strength, SCREENSIZE[0] + wind_strength)
 				snow_list[i] = [x, y]
 	
 		# Flip the screen to display all the new drawing
