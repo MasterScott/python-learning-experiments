@@ -29,6 +29,7 @@ def build_chord(frequency_list=[], play_time=1):
 			sample_list[i] = array("h", [0] * period)
 			# Divide by fl to prevent final amplitude from going over the max
 			amplitude = 2 ** (abs(mixer.get_init()[1]) - 1) / fl - 1
+			# This for loop is what synthesizes the actual square wave
 			for t in xrange(period):
 				if t < period / 2:
 					sample_list[i][t] = amplitude
