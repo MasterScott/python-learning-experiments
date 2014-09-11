@@ -11,9 +11,9 @@ from array import array
 from time import sleep
 
 # Frequencies in Hz, play_time in full seconds
-# For chords, you can't just loop individual wave cycles
+# For chords, you can't just loop an individual wave cycle
 # because each pitch has a different cycle length.
-# Therefore, the play time must be specified.
+# Therefore, the total play time must be specified at creation.
 
 def build_chord(frequency_list=[], play_time=1):
 	# import ipdb; ipdb.set_trace()
@@ -35,7 +35,8 @@ def build_chord(frequency_list=[], play_time=1):
 				else:
 					sample_list[i][t] = -amplitude
 		# Mix the sample arrays together into one.
-		# Use mod to loop back through the sample instead of overflowing.
+		# Since each cycle is a different length,
+		# use mod to loop back through the cycle instead of overflowing.
 		# Make an empty sound of length play_time in seconds...
 		final_sample = array("h", [0] * play_time * rate)
 		# ...and sum the samples in samples_list into it.
